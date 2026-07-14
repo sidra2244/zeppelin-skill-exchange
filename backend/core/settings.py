@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'cloudinary',
+    'django_filters',
     # Our apps
     'users',
     'listings',
@@ -147,6 +148,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',  
+        'rest_framework.filters.SearchFilter',                
+        'rest_framework.filters.OrderingFilter',              
+    ],
 }
 
 # CORS
@@ -169,3 +175,4 @@ CLOUDINARY_STORAGE = {
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_URL = '/media/'
+
