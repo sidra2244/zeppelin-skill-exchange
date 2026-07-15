@@ -3,6 +3,7 @@ from .models import Listing
 from .serializers import ListingSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
+from matches.views import find_and_create_matches
 
 
 
@@ -20,7 +21,10 @@ class ListingView(generics.ListCreateAPIView):
         return Listing.objects.filter(status='active')
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        listing = serializer.save(user=self.request.user)
+        print(f"DEBUG: Listing created - {listing.title} | {listing.type} | {listing.category} | {listing.city}")
+        matches = find_and_create_matches(listing)
+        print(f"DEBUG: Matches created - {len(matches)}")
 
 class ListingDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ListingSerializer
