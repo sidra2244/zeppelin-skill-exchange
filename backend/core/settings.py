@@ -47,12 +47,12 @@ INSTALLED_APPS = [
     'corsheaders',
     'cloudinary',
     'django_filters',
+    'channels',          # Django Channels (WebSocket support)
     # Our apps
     'users',
     'listings',
     'matches',
-    
-
+    'chat',              # Real-time chat
 ]
 
 MIDDLEWARE = [
@@ -140,6 +140,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Default primary key type for models that don't define one
+# Silences W042 warnings across all apps
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 # DRF
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -176,3 +180,23 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_URL = '/media/'
 
+
+# =============================================================================
+# Django Channels — Real-time WebSocket support
+# =============================================================================
+
+# Tell Django to use the Channels ASGI application
+ASGI_APPLICATION = 'core.asgi.application'
+
+# Redis channel layer — broker for broadcasting messages between consumers
+# For production, replace host/port with your managed Redis URL (e.g. Upstash)
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [
+                (os.getenv('REDIS_HOST', '127.0.0.1'), int(os.getenv('REDIS_PORT', 6379)))
+            ],
+        },
+    },
+}
