@@ -11,8 +11,8 @@ class ListingView(generics.ListCreateAPIView):
     serializer_class = ListingSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['category', 'city', 'radius_km', 'type']
-    search_fields = ['description', 'category', 'city']
+    filterset_fields = ['category', 'city', 'radius_km', 'type', 'title']
+    search_fields = ['description', 'category', 'city', 'title']
     ordering_fields = ['created_at', 'radius_km']
     ordering = ['-created_at']  # Default ordering by created_at descending
 

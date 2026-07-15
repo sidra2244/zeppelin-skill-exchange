@@ -8,10 +8,10 @@ class Listing(models.Model):
         ('offer', 'Offer'),
         ('request', 'Request')
     ]
-    STATUS_CHOICES = {
+    STATUS_CHOICES = [
         ('active', 'Active'),
         ('closed', 'Closed')
-    }
+    ]
     CATEGORY_CHOICES = [
         ('technology', 'Technology'),
         ('language', 'Language'),
@@ -24,6 +24,7 @@ class Listing(models.Model):
     ]
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='listings')
+    title = models.CharField(max_length=100, default='Untitled')
     type = models.CharField(max_length=10, choices=TYPE_CHOICES)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     description = models.TextField()
