@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',            # ASGI server for WebSockets (Must be first)
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
