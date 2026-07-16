@@ -1,10 +1,13 @@
 from django.urls import path
-from .views import RegisterView, UserDetail
+from .views import RegisterView, UserDetail, BlockUserVIew, UnblockUserView, BlockedUserList
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
-    path('auth/register/', RegisterView.as_view(), name='register'),
-    path('auth/me/', UserDetail.as_view(), name='me'),
-    path('auth/login/', TokenObtainPairView.as_view(), name='login'),
-    path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('me/', UserDetail.as_view(), name='me'),
+    path('login/', TokenObtainPairView.as_view(), name='login'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('block/', BlockUserVIew.as_view(), name='block' ),
+    path('unblock/<int:pk>/', UnblockUserView.as_view(), name='unblock'),
+    path('blocked/', BlockedUserList.as_view(), name='block-users')
 ]

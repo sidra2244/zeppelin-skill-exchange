@@ -19,8 +19,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('users.urls')),
-    path('api/', include('listings.urls')),
+    path('api/auth/', include('users.urls')),
+    path('api/listings/', include('listings.urls')),
+    path('api/matches/', include('matches.urls')),
     path('api/', include('chat.urls')),    # Real-time chat REST endpoints
 ]
 
