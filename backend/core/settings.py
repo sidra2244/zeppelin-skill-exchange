@@ -189,8 +189,11 @@ MEDIA_URL = '/media/'
 # Tell Django to use the Channels ASGI application
 ASGI_APPLICATION = 'core.asgi.application'
 
-# Redis channel layer — broker for broadcasting messages between consumers
-# For production, replace host/port with your managed Redis URL (e.g. Upstash)
+# Channel Layer Configuration
+# -----------------------------------------------------------------------
+# Uses Redis as the channel layer broker for real-time message broadcasting
+# -----------------------------------------------------------------------
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
@@ -198,6 +201,17 @@ CHANNEL_LAYERS = {
             'hosts': [
                 (os.getenv('REDIS_HOST', '127.0.0.1'), int(os.getenv('REDIS_PORT', 6379)))
             ],
+            'socket_connect_timeout': 30,
+            'socket_timeout': 30,
+            'retry_on_timeout': True,
         },
     },
 }
+
+# --- LOCAL DEV WITHOUT REDIS (uncomment if Redis is not available) ---
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer',
+#     },
+# }
+
