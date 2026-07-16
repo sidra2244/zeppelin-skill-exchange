@@ -36,3 +36,23 @@ class Listing(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.type} - {self.category}" 
     
+
+class ListingReport(models.Model):
+    REASON_CHOICE = [
+        ('spam', 'Spam'),
+        ('inappropriate', 'Inappropriate'),
+        ('fake', 'Fake Listing'),
+        ('other', 'Other'),
+    ]
+    
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='reports')
+    reported_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    reason = models.CharField(max_length=20, choices=REASON_CHOICE)
+    created_by = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('listing', 'reported_by')
+
+    def __str__(self):
+        return f"{self.reported_by.username} reported listing {self.listing.id}"
+    

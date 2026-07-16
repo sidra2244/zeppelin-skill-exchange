@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from listings.serializers import ListingSerializer
+from .models import BlockedUser
 
 User = get_user_model()
 
@@ -34,3 +35,10 @@ class UserSerializer(serializers.ModelSerializer):
         def get_listings(self, obj):
             listings = obj.listings.filter(status='active')
             return ListingSerializer(listings, many=True).data
+
+
+class BlockedUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlockedUser
+        fields = ['id', 'blocked', 'created_by']
+        read_only_fields = ['blocker', 'created_by']
