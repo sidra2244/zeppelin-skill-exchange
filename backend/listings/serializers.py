@@ -3,10 +3,11 @@ from .models import Listing, ListingReport
 
 class ListingSerializer(serializers.ModelSerializer):
     user_name = serializers.SerializerMethodField()
+    user_photo = serializers.SerializerMethodField() 
     class Meta:
         model = Listing
         fields = [
-            'id', 'user', 'user_name', 'type', 'title',
+            'id', 'user', 'user_name', 'user_photo', 'type', 'title',
             'category', 'description', 'city',
             'radius_km', 'status', 'created_at',
         ]
@@ -14,6 +15,11 @@ class ListingSerializer(serializers.ModelSerializer):
     
     def get_user_name(self, obj):
             return f"{obj.user.first_name} {obj.user.last_name}".strip() or obj.user.email
+    
+    def get_user_photo(self, obj):  
+        if obj.user.photo:
+            return obj.user.photo.url
+        return None
 
 
     
