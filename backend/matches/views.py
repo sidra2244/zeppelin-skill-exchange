@@ -5,6 +5,7 @@ from .serializers import MatchSerializer
 # from rest_framework.views import APIView
 from listings.models import Listing
 from django.db.models import Q
+from users.models import BlockedUser
 
 
 def find_and_create_matches(listing):
@@ -40,7 +41,8 @@ class MyMatchView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Match.objects.filter (Q(listing1__user=user)| Q(listing2__user=user)).order_by('matched_at')
+        blocked_user = BlockedUser.objects.filter(blocker = user).values_list('blocked_id', flat=True)
+        return Match.objects.filter (Q(listing1__user=user)| Q(listing2__user=user)).exclude(Q(listing1__user__in=blocked_user) | Q(listing2__user__in=blocked_user)).order_by('matched_at')
     
 class MatchDetailView(generics.RetrieveAPIView):
     serializer_class = MatchSerializer
