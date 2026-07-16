@@ -21,5 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('users.urls')),
     path('api/listings/', include('listings.urls')),
-    path('api/matches/', include('matches.urls'))
+    path('api/matches/', include('matches.urls')),
+    path('api/', include('chat.urls')),    # Real-time chat REST endpoints
 ]
+
