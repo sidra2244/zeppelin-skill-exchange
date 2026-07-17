@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from .serializers import RegisterSerializer, UserSerializer, BlockedUserSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import BlockedUser
+from listings.models import Listing
+from listings.serializers import ListingSerializer
 
 User = get_user_model()
 
@@ -39,3 +41,11 @@ class BlockedUserList(generics.ListAPIView):
 
     def get_queryset(self):
         return BlockedUser.objects.filter(blocker=self.request.user)
+    
+
+class MyListingView(generics.ListAPIView):
+    serializer_class = ListingSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Listing.objects.filter(user=self.request.user).order_by('-created_at')
