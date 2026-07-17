@@ -1,1 +1,74 @@
+# ── Backend ──────────────────────────
 backend/.env
+backend/venv/
+backend/env/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.pyc
+backend/**/*.pyc
+backend/db.sqlite3
+backend/staticfiles/
+backend/media/
+backend/*.log
+
+
+# ── General ──────────────────────────
+.DS_Store
+*.log
+.env
+.env.local
+*.pyc
+__pycache__/
+# Backend
+backend/.env
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+frontend/.env
+frontend/*.log
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor directories and files
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*.swo
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# Build outputs
+dist/
+build/
+out/
+*.tsbuildinfo
