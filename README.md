@@ -203,7 +203,7 @@ main          ← production only
 | # | Name | Role | Branch |
 |---|------|------|--------|
 | 1 | **Abdullah Minhas** | Team Lead + Backend Developer | `feature/backend-abdullah` |
-| 2 | **Hassan Adil** | Frontend — Matches, Chat, Profile, API Integration | `feature/hassan` |
+| 2 | **Hassan Adil** | Frontend — Matches, Chat, Profile, API Integration | `feature/hassan-adil` |
 | 3 | **Sidra** | Frontend — Landing, About, Browse, Auth Pages | `feature/sidra` |
 | 4 | **Akash** | Frontend — Create Listing | `feature/akash` |
 | 5 | **Wajih ul Qammar** | Real-time Chat + Deployment | `feature/wajihulqammar` |
@@ -217,5 +217,5 @@ Built as part of the **Teerop Web Development Fellowship 2026**.
 ---
 
 <p align="center">
-  Built with ❤️ by Group M2 — Teerop Web Development Fellowship 2026
+  Built with ❤️ by Group M2 — Zeppelin Web Development Fellowship 2026
 </p>
