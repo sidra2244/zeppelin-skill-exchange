@@ -369,7 +369,7 @@ function Browse() {
                             </p>
                           </div>
                         </div>
-                        {user?.id != item.user && (
+                        {user && user?.id != item.user && (
                           <Button
                             variant="primary"
                             size="sm"
