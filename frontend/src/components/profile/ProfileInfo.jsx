@@ -162,8 +162,8 @@ const ProfileInfo = () => {
                 <div className="relative">
                   <div className="overflow-hidden rounded-full border-4" style={{ borderColor: colors.primary }}>
                     <img 
-                      src={user.photo ? "https://res.cloudinary.com/deiqafya2/" + user?.photo : "/src/assets/defaultpfp.png"} 
-                      className="w-20 h-20 object-cover" 
+                      src={user?.photo ? `https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_DB}/${user.photo}`: "/src/assets/defaultpfp.png"}
+             className="w-20 h-20 object-cover" 
                       alt={user?.username || 'User'} 
                     />
                   </div>
