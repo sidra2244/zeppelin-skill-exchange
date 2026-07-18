@@ -72,3 +72,11 @@ dist/
 build/
 out/
 *.tsbuildinfo
+
+# ── Python ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
